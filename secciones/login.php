@@ -8,15 +8,15 @@
 </head>
 <body>
     <header>Aqui va el encabezado (logo)</header>
-    <form>
+    <form action="../procesos/proceso_login.php" method="POST">
         <fieldset>
             <H1>PANEL DE CONTROL</H1>
 
             <label for="correo">Correo Electronico:</label>
-            <input id="correo" name="correo" type="email"/>
+            <input id="correo" name="correo" type="email" required/>
             <br><br>
             <label for="password">Contraseña:</label>
-            <input id="password" name="password" type="password"/>
+            <input id="password" name="password" type="password" required/>
             <br><br>
             <button>Ingresar</button>
         </fieldset>
