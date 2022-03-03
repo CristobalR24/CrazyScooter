@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 include("../conexion/conexion.php");
 
 if(!empty($_POST)){
@@ -6,7 +6,6 @@ if(!empty($_POST)){
     $pass=$_POST['password'];
     verificar($correo,$pass);
 }
-
 
 function verificar($correo,$pass){
     global $con;
@@ -18,6 +17,8 @@ function verificar($correo,$pass){
         echo $resultado->Correo;
         echo "<br>";
         echo $resultado->Contraseña;
+
+        $_SESSION['sw']=true;
     }
     else{
         header("Location: ../secciones/login.php");
