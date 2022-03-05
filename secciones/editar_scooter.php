@@ -26,7 +26,7 @@ $sql='SELECT * FROM scooter';
             <ul>
                 <li>
                     <form action="../procesos/procesos_scooters.php" method="POST">
-                        <input type="hidden" id="id_scooter" name="id_scooter" value=<?php echo $modelo->ID_Scooter;?>/>
+                        <input type="hidden" id="id_scooter" name="id_scooter" value="<?php echo $modelo->ID_Scooter;?>"/>
                         <img alt="vista previa del modelo" src="../imagenes/productos/<?php echo $modelo->Imagen;?>" width="100"/>
                         <br>
                         <?php echo $modelo->Nombre;?>

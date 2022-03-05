@@ -2,11 +2,12 @@
 include("../conexion/conexion.php");
 
 if(!isset($_POST['operacion'])){
-    echo "insertar nuevo";
+    header("Location: ../secciones/insertar_scooter.php");
 }
 else{
     if($_POST['operacion']=='editar'){
-        echo "editar existente";
+        $ID=$_POST['id_scooter'];
+        header("Location: ../secciones/insertar_scooter.php?ID=".$ID);
     }
     else{
         echo "eliminar";
