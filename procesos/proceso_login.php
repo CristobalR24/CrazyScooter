@@ -14,11 +14,9 @@ function verificar($correo,$pass){
     $resultado=$consulta->fetch(PDO::FETCH_OBJ);
 
     if($consulta->rowCount()>0){
-        echo $resultado->Correo;
-        echo "<br>";
-        echo $resultado->Contraseña;
 
         $_SESSION['sw']=true;
+        header("Location: ../secciones/ver_reservaciones.php");
     }
     else{
         header("Location: ../secciones/login.php");
