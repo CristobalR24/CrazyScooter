@@ -36,8 +36,12 @@ if(isset($_GET["ID"])){
     <div> <!-- area añadir -->
     
         <form action="../procesos/procesos_scooters.php" method="POST" enctype="multipart/form-data">
-            <input type="text" name="control" id="control" value="<?php if(isset($detalle)){echo "1";}else echo "2";?>"/><!-- 1 = actualizar 2 = insertar -->
             
+            <input type="hidden" name="control" id="control" value="<?php if(isset($detalle)){echo "1";}else echo "2";?>"/><!-- 1 = actualizar 2 = insertar -->
+            <input type="hidden" name="foto_ante" id="foto_ante" value="<?php if(isset($detalle)){echo $detalle->Imagen;}?>"/><!-- solo para actualizar -->
+            <input type="hidden" id="id_scooter" name="id_scooter" value="<?php if(isset($detalle)){echo $detalle->ID_Scooter;}?>"/>
+
+
             <img id="vista_previa" alt="vista previa de foto" src="../imagenes/productos/<?php if(isset($detalle)){echo $detalle->Imagen;}else echo "default_scooter.png"; ?>" width="100"/>
             <br>
 
