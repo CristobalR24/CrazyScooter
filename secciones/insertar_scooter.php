@@ -13,10 +13,10 @@ if(isset($_GET["ID"])){
 ?>
 <script>
   var cargaArchivo = function(event) {
-    var output = document.getElementById('vista_previa');
+    var vista = document.getElementById('vista_previa');
     vista.src = URL.createObjectURL(event.target.files[0]);
     vista.onload = function() {
-      URL.revokeObjectURL(vista.src) // free memory
+      URL.revokeObjectURL(vista.src) // importante-> libera memoria
     }
   };
 </script>
@@ -35,21 +35,28 @@ if(isset($_GET["ID"])){
     <H1>PANEL DE CONTROL</H1>
     <div> <!-- area añadir -->
     
-        
-        <form action="" method="POST" enctype="multipart/form-data">
-            <img id="vista_previa" alt="vista previa de foto" src="../imagenes/<?php if(isset($detalle)){echo "../imagenes/productos/".$detalle->Imagen;}else echo "default_scooter.png"; ?>" width="100"/>
+        <form action="../procesos/procesos_scooters.php" method="POST" enctype="multipart/form-data">
+            <input type="text" name="control" id="control" value="<?php if(isset($detalle)){echo "1";}else echo "2";?>"/><!-- 1 = actualizar 2 = insertar -->
+            
+            <img id="vista_previa" alt="vista previa de foto" src="../imagenes/productos/<?php if(isset($detalle)){echo $detalle->Imagen;}else echo "default_scooter.png"; ?>" width="100"/>
+            <br>
 
             <label  class="archivo" for="foto_nuevo" >Subir una nueva foto: </label> 
             <input type="file" id="foto_nuevo" name="foto_nuevo" accept="image/*" onchange="cargaArchivo(event)">
             <br>
+
             <label for="nombre">Nombre:</label>
             <input id="nombre" name="nombre" type="text" value="<?php if(isset($detalle)){echo $detalle->Nombre;}?>" required/>
             <br>
+
             <label for="descripcion">Descripcion:</label>
             <input id="descripcion" name="descripcion" type="text" value="<?php if(isset($detalle)){echo $detalle->Descripcion;}?>" required/>
             <br>
+
             <label for="cantidad">Cantidad:</label>
             <input id="cantidad" name="cantidad" type="number" value="<?php if(isset($detalle)){echo $detalle->Cantidad;}?>" required/>
+        
+            <button name="enviar" type="submit">Continuar</button>
         </form>
     </div>
     <footer>Copyright * 2022 | Noni team</footer>

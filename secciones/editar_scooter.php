@@ -17,7 +17,9 @@ $sql='SELECT * FROM scooter';
     <nav>Aqui va la barra lateral</nav>
     <H1>PANEL DE CONTROL</H1>
     <div>
-        <a href="../procesos/procesos_scooters.php"><button>Añadir nuevo modelo</button></a>
+        <form action="../procesos/procesos_scooters.php" method="POST">
+            <button name="operacion" value="insertar" type="submit">Añadir nuevo modelo</button>
+        </form>
     </div>
     <div> <!-- area lista de modelos-->
         <?php
