@@ -1,6 +1,5 @@
 <?php 
 include('../conexion/conexion.php');
-$consultar = $con->query('SELECT * FROM usuario');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,16 +21,17 @@ $consultar = $con->query('SELECT * FROM usuario');
   <li><a href="" >Salir</a></li>
     </ul> </nav>
   </section>
- <div>
-    <form action="../secciones/buscar_usuario.php" method="POST">
+  <form action="../secciones/buscar_usuario.php" method="POST">
             Buscar Usuario 
             <br>
             <input type="text" placeholder="Juan Perez" title="Buscar Usuario" name="nombre" required/>
             <br>
             <input class="enviar" type="submit" value="Buscar" >
    </form>
- </div>
-<br>
+  <?php
+  $search = $_POST['nombre'];
+  $consultar = $con->query("SELECT * FROM usuario WHERE Nombre like '%$search%'");
+  ?>
 </body>
 <table>
 <thead>
@@ -53,7 +53,7 @@ $consultar = $con->query('SELECT * FROM usuario');
         <td><?php if($detalleUser->Tipo_usuario==1){
             echo 'Administrador';}
             else{echo 'General';}?></td>
-         <?php  if($detalleUser->Tipo_usuario==1)
+      <?php  if($detalleUser->Tipo_usuario==1)
       {  echo "<td><button type='button'>Eliminar</button> </a> </td>";
          echo "<td>  <a href='editar_datos_usuario.php?ID_Usuario=".$detalleUser->ID_Usuario."'> <button type='button'>Editar</button> </a> </td>";
        }
@@ -62,21 +62,7 @@ $consultar = $con->query('SELECT * FROM usuario');
           echo "<td>  <a href='editar_datos_usuario.php?ID_Usuario=".$detalleUser->ID_Usuario."'> <button type='button'>Editar</button> </a> </td>";
         }
       }?>
-        </tr>
-   <?php if(!empty($_GET))
-    {  $confirma = $_GET['msg']; 
-      if($confirma == 1){
-       echo "<p>Se ha editado el usuario con exito</p>";
-      }
-      else if($confirma == 2){
-        echo "<p> Se ha eliminado el usuario con exito </p>";
-      }
-      else if ($confirma == 3){
-        echo "<p> Error al eliminar  </p>";
-      }
-    } 
-    ?>
-            
+        </tr>            
 </tbody>
 </table>
 </body>
