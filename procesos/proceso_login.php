@@ -3,7 +3,7 @@ include("../conexion/conexion.php");
 
 if(!empty($_POST)){
     $correo=$_POST['correo'];
-    $pass=$_POST['password'];
+    $pass=md5($_POST['password']);
     verificar($correo,$pass);
 }
 

@@ -14,7 +14,18 @@ $sql='SELECT * FROM scooter';
 </head>
 <body>
     <header>Aqui va el encabezado (logo)</header>
-    <nav>Aqui va la barra lateral</nav>
+    <nav>
+        <ul>
+            <li><a href="ver_reservaciones.php">Ver Reservaciones</a></li>
+            <li><a href="editar_cliente.php">Editar Clientes</a></li>
+            <li><a href="editar_scooter.php">Editar Modelos</a></li>
+            <li><a href="subir_promocion.php">Subir Promociones</a></li>
+            <li><a href="administrar_usuarios.php">Administrar Usuario</a></li>
+            <li><a href="gestionar_preguntas.php">Gestionar Preguntas</a></li>
+            <li><a href="" >Salir</a></li>
+        </ul>
+    </nav>
+    
     <H1>PANEL DE CONTROL</H1>
     <div>
         <form action="../procesos/procesos_scooters.php" method="POST">
