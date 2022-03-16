@@ -1,5 +1,5 @@
 <?php
-   include("../config/conexion.php");
+   include("../conexion/conexion.php");
 
 ?>
 
@@ -21,15 +21,35 @@
     <li><a href="" >Salir</a></li>
   </ul> </nav>
 
+  <script>
+  var cargaArchivo = function(event) {
+    var vista = document.getElementById('vista_previa');
+    vista.src = URL.createObjectURL(event.target.files[0]);
+    vista.onload = function() {
+      URL.revokeObjectURL(vista.src) // importante-> libera memoria
+    }
+  };
+  </script>
+
   <div>
-      <form action ="p_insertar_promocion.php" method="post" entype="multipart/form-data">
-      <input type="file" id="image" name="image" multiple>
+      <form action ="../procesos/p_insertar_promocion.php" method="post" enctype="multipart/form-data">
+      <input type="text" id="titulo" name="titulo" required>
+      <br>
+      <input type="file" id="image" name="image" accept="image/*" onchange="cargaArchivo(event)">
+      <img id="vista_previa" alt="vista previa de foto" src="../imagenes/Promociones/<?php echo "default_scooter.png"; ?>" width="100"/>
+      <br>
+      <button name="submit">Cargar Imagen</button>        
+      </form>
+
+      
+        <?php if (isset($_GET['msg'])){?>
+          <div>
+            Promocion añadida!
           </div>
-          <button name="submit">Cargar Imagen</button>
-        
-  </form>
+        <?php } ?>
+      
   </div>
   
-</div>
+  </div>
 </body>
 </html>
