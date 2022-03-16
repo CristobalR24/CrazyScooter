@@ -1,0 +1,61 @@
+<?php include("../procesos/verificar_sesion.php");
+include("../conexion/conexion.php");
+
+$sql='SELECT * FROM scooter';
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio de administrador</title>
+</head>
+<body>
+    <header>Aqui va el encabezado (logo)</header>
+    <nav>
+        <ul>
+            <li><a href="ver_reservaciones.php">Ver Reservaciones</a></li>
+            <li><a href="editar_cliente.php">Editar Clientes</a></li>
+            <li><a href="editar_scooter.php">Editar Modelos</a></li>
+            <li><a href="subir_promocion.php">Subir Promociones</a></li>
+            <li><a href="administrar_usuarios.php">Administrar Usuario</a></li>
+            <li><a href="gestionar_preguntas.php">Gestionar Preguntas</a></li>
+            <li><a href="" >Salir</a></li>
+        </ul>
+    </nav>
+    
+    <H1>PANEL DE CONTROL</H1>
+    <div>
+        <form action="../procesos/procesos_scooters.php" method="POST">
+            <button name="operacion" value="insertar" type="submit">Añadir nuevo modelo</button>
+        </form>
+    </div>
+    <div> <!-- area lista de modelos-->
+        <?php
+        $consultarModelos=$con->query($sql);
+        while($modelo=$consultarModelos->fetch(PDO::FETCH_OBJ)){?>
+            <ul>
+                <li>
+                    <form action="../procesos/procesos_scooters.php" method="POST">
+                        <input type="hidden" id="id_scooter" name="id_scooter" value="<?php echo $modelo->ID_Scooter;?>"/>
+                        <img alt="vista previa del modelo" src="../imagenes/productos/<?php echo $modelo->Imagen;?>" width="100"/>
+                        <br>
+                        <?php echo $modelo->Nombre;?>
+                        <br>
+                        <?php echo $modelo->Descripcion;?>
+                        <br>
+                        <button name="operacion" type="submit" value="editar">Editar</button>
+                        <br>
+                        <button name="operacion" type="submit" value="eliminar" onclick="return confirm('¿Seguro/a que desea eliminar este modelo?')">Eliminar</button>
+                    </form>
+                </li>
+            </ul>
+        <?php }
+        ?>
+
+    </div>
+    <footer>Copyright * 2022 | Noni team</footer>
+</body>
+</html>
