@@ -8,7 +8,7 @@
 <body>
     <?php
             if(!empty($_POST)){
-                $contra = $_POST['contra'];
+                $contra = md5($_POST['contra']);
                 $code = $_POST['code'];
                 $sqlUpdate = $con->exec("UPDATE usuario SET password ='$contra' WHERE Recuperar='$code'");
                 echo ("Se actualizo con exito");
