@@ -26,22 +26,21 @@
     </nav>
   
   <body>
-  <table>
-      <tr>
-        <th> Gestionar preguntas <a href="agregar_preguntas.php"> <button> Añadir </button> </a> </th>
-      </tr>
-
+  <form action="../procesos/actualizar_preguntas.php" method="POST">
       <?php
-      $consulta = $con->prepare("SELECT * FROM preguntas");
+      $id=$_GET['id'];
+      $consulta = $con->prepare("SELECT * FROM preguntas WHERE ID_Preguntas = '$id'");
       $consulta->execute();
       while($fila = $consulta->fetch(PDO::FETCH_OBJ)) { ?>
-      <tr>
-        <td> <?php echo $fila->Preguntas; ?> 
-        <a href="editar_preguntas.php?id=<?php echo $fila-> ID_Preguntas; ?>"> <button>Editar</button> 
-        <a href="../procesos/eliminar_preguntas.php?id=<?php echo $fila-> ID_Preguntas; ?>"> <button>Eliminar</button> </td>
-      </tr>
+      <input type="hidden" size="30" name="id" maxlength="1000" value="<?php echo $fila->ID_Preguntas; ?>"  require> <br>  
+      Pregunta 
+      <input type="text" size="30" name="pregunta" maxlength="1000" value="<?php echo $fila->Preguntas; ?>"  require> <br>   
+      Respuesta:
+      <input type="text" size="30" name="respuesta" maxlength="1000" value="<?php echo $fila->Respuestas; ?>"  require> <br>
+
+      <input type="submit" value="Actualizar" name="btnActualizar"/>  
       <?php } ?>
-   </table>
+      </form>
   </body>
 </html>
  

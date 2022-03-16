@@ -1,3 +1,4 @@
+<?php include("../procesos/verificar_sesion.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,7 @@
         <li><a href="subir_promocion.php">Subir Promociones</a></li>
         <li><a href="administrar_usuarios.php">Administrar Usuario</a></li>
         <li><a href="gestionar_preguntas.php">Gestionar Preguntas</a></li>
-        <li><a href="" >Salir</a></li>
+        <li><a href="logout.php">Salir</a></li>
         </ul> </nav>
     </section>
 

@@ -19,7 +19,7 @@ function verificar($correo,$pass){
         header("Location: ../secciones/ver_reservaciones.php");
     }
     else{
-        header("Location: ../secciones/login.php");
+        header("Location: ../secciones/login.php?msg=error");
     }
 
 }

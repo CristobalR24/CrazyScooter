@@ -1,7 +1,3 @@
-<?php
-   include('../conexion/conexion.php');
-?>
-
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -26,22 +22,15 @@
     </nav>
   
   <body>
-  <table>
-      <tr>
-        <th> Gestionar preguntas <a href="agregar_preguntas.php"> <button> Añadir </button> </a> </th>
-      </tr>
-
-      <?php
-      $consulta = $con->prepare("SELECT * FROM preguntas");
-      $consulta->execute();
-      while($fila = $consulta->fetch(PDO::FETCH_OBJ)) { ?>
-      <tr>
-        <td> <?php echo $fila->Preguntas; ?> 
-        <a href="editar_preguntas.php?id=<?php echo $fila-> ID_Preguntas; ?>"> <button>Editar</button> 
-        <a href="../procesos/eliminar_preguntas.php?id=<?php echo $fila-> ID_Preguntas; ?>"> <button>Eliminar</button> </td>
-      </tr>
-      <?php } ?>
-   </table>
+    <form action="../procesos/insertar_preguntas.php" method="POST">
+      <fieldset>
+       Pregunta:
+       <input type="text" size="30" name="pregunta" maxlength="1000" require> <br><br>
+       Respuesta:
+       <input type="text" size="30" name="respuesta" maxlength="1000" require> <br><br>
+       <input type="submit" value="Guardar" name="btnGuardar"/>    
+      </fieldset>   
+    </form>
   </body>
+
 </html>
- 
